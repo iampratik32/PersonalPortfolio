@@ -1,15 +1,16 @@
 const { colors } = require('../config/theme')
 const { default: styled } = require("styled-components");
-const maxWidth = '650px'
+const maxWidth = '1000px'
 
 exports.Main = styled.div`
-    background-color: ${colors.mainColor};
+    background-color: ${colors.containerColor};
     /* background-color: ${props => props.menu ? colors.dimmed : colors.mainColor}; */
     @import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap");
 `
 
 exports.HeaderDiv = styled.div`
     display: flex;
+    background-color: ${colors.mainColor};
     height: 7rem;
 `
 
@@ -36,8 +37,10 @@ exports.HeaderLogo = styled.div`
 
 exports.HeaderMenu = styled.span`
     display: none;
+    transition: opacity 0.4s ease-out;
     padding: 0.5rem;
     cursor: pointer;
+    opacity: ${p => p.visible ? 1 : 0};
     @media(max-width: ${maxWidth}){
         display: block;
     }
@@ -96,24 +99,61 @@ exports.MenuSidebarItem = styled.a`
 
 exports.MenuSideBarIcon = styled.span`
     position: absolute;
-    top: 1rem;
+    top: 2rem;
     cursor: pointer;
     right: 1rem;
+    opacity: ${p => p.visible ? 1 : 0};
+    transition: opacity 0.4s ease-out;
 `
 
 
 exports.BannerContainer = styled.div`
     display: flex;
     background: ${colors.bannerGradient};
-    /* background-color: ${colors.mainColor}; */
     height: calc(100vh - 7rem);
 `
 
 exports.Content = styled.div`
     flex: 1 0 auto;
-    margin-left: 8rem;
+    flex-direction: column;
+    margin-left: 10rem;
+    margin-right: 10rem;
     @media(max-width: ${maxWidth}){
         margin-left: 1rem;
+        margin-right: 1rem;
+    }
+`
+
+exports.VSpacer = styled.div`
+    height: ${p => p.height ? p.height : '1rem'};
+`
+
+exports.ParText = styled.p`
+    letter-spacing: 0.05cm;
+    font-size: ${props => props.size ? props.size : '14px'};
+    color: ${props => props.color ? props.color : colors.textColor};
+`
+
+exports.HeaderText = styled.span`
+    font-size: ${props => props.size ? props.size : '36px'};
+    font-weight: bolder;
+    text-align: justify;
+    text-justify: inter-word;
+    color: ${props => props.color ? props.color : colors.textColor};
+    /* @media(max-width: ${maxWidth}){
+        font-size: clamp(40px, 7vw, 40px);
+    } */
+`
+
+exports.BannerWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 17.5rem);
+    flex-wrap: wrap-reverse;
+    margin-left: 1.5rem;
+    @media(max-width: ${maxWidth}){
+        margin-left: 0rem;
+        width: calc(100vw - 3rem);
     }
 `
 
@@ -147,13 +187,31 @@ exports.VLine = styled.div`
     border-left: 1px solid white;
 `
 
-exports.MainContainer = styled.div`
-    margin-left: 8rem;
-    margin-right: 8rem;
-`
+// exports.MainContainer = styled.div`
+//     margin-left: 8rem;
+//     margin-right: 8rem;
+// `
 
 exports.FooterDiv = styled.div`
-    /* background-color: cornsilk; */
     height: 4rem;
+    background-color: ${colors.containerColor};
     text-align: center;
+`
+exports.Button = styled.span`
+    border: 1px solid ${colors.textColor};
+    width: 100px;
+    text-align: center;
+    align-self: center;
+    border-radius: 0.5rem;
+    padding-top: 1rem;
+    user-select: none;
+    padding-bottom: 1rem;
+    cursor: pointer;
+    :hover{
+        background: rgba(100,255,218,0.1);
+        transition: 0.2s ease-in-out;
+    }
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: ${colors.textColor};
 `

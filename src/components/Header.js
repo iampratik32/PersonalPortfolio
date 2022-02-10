@@ -11,17 +11,17 @@ function Header({ menuWidth, setMenuWidth }) {
   return (
     <HeaderDiv>
       <HeaderContent>
-        <HeaderLogo><img alt='Logo' src={Avatar} width={50} height={50}/></HeaderLogo>
+        <HeaderLogo><img alt='Logo' src={Avatar} width={50} height={50} /></HeaderLogo>
         <HeaderMain>
           <HeaderItem href='/'>Home</HeaderItem>
           <HeaderItem href='#'>Experience</HeaderItem>
           <HeaderItem href='#'>Work</HeaderItem>
           <HeaderItem href='#'>Contact</HeaderItem>
-          <HeaderMenu onClick={toogleMenu}><FaBars color='#fff' size={22} /></HeaderMenu>
+          <HeaderMenu visible={menuWidth === '0px' ? true : false} onClick={toogleMenu}><FaBars color='#fff' size={22} /></HeaderMenu>
         </HeaderMain>
       </HeaderContent>
       <MenuSidebar width={menuWidth}>
-        <MenuSideBarIcon><IoMdClose color='#fff' size={40} onClick={toogleMenu} /></MenuSideBarIcon>
+        <MenuSideBarIcon visible={menuWidth !== '0px' ? true : false}><IoMdClose color='#fff' size={40} onClick={toogleMenu} /></MenuSideBarIcon>
         <MenuSidebarItem href='/'>Home</MenuSidebarItem>
         <MenuSidebarItem href='#'>Experience</MenuSidebarItem>
         <MenuSidebarItem href='#'>Work</MenuSidebarItem>
