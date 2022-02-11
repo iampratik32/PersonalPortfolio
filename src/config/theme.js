@@ -8,4 +8,5 @@ export const colors = {
     containerColor: '#020c1b',
     bannerGradient: 'linear-gradient(#0a192f,#020c1b)',
     textColor: '#64ffda',
+    lineColor: '#b0bec5'
 }

@@ -4,9 +4,9 @@ import { FaBars } from 'react-icons/fa'
 import { IoMdClose } from 'react-icons/io'
 import Avatar from '../assets/images/Avatar.jpg'
 
-function Header({ menuWidth, setMenuWidth }) {
-
+function Header({ menuWidth, setMenuWidth, allRefs }) {
   const toogleMenu = () => setMenuWidth(menuWidth === '0px' ? '50%' : '0px')
+  const scroll = i => allRefs[i].current.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
   return (
     <HeaderDiv>
@@ -14,18 +14,20 @@ function Header({ menuWidth, setMenuWidth }) {
         <HeaderLogo><img alt='Logo' src={Avatar} width={50} height={50} /></HeaderLogo>
         <HeaderMain>
           <HeaderItem href='/'>Home</HeaderItem>
-          <HeaderItem href='#'>Experience</HeaderItem>
-          <HeaderItem href='#'>Work</HeaderItem>
-          <HeaderItem href='#'>Contact</HeaderItem>
+          <HeaderItem onClick={() => scroll(0)}>About</HeaderItem>
+          <HeaderItem onClick={() => scroll(1)}>Experience</HeaderItem>
+          <HeaderItem onClick={() => scroll(2)}>Projects</HeaderItem>
+          <HeaderItem onClick={() => scroll(3)}>Contact</HeaderItem>
           <HeaderMenu visible={menuWidth === '0px' ? true : false} onClick={toogleMenu}><FaBars color='#fff' size={22} /></HeaderMenu>
         </HeaderMain>
       </HeaderContent>
       <MenuSidebar width={menuWidth}>
         <MenuSideBarIcon visible={menuWidth !== '0px' ? true : false}><IoMdClose color='#fff' size={40} onClick={toogleMenu} /></MenuSideBarIcon>
         <MenuSidebarItem href='/'>Home</MenuSidebarItem>
-        <MenuSidebarItem href='#'>Experience</MenuSidebarItem>
-        <MenuSidebarItem href='#'>Work</MenuSidebarItem>
-        <MenuSidebarItem href='#'>Contact</MenuSidebarItem>
+        <MenuSidebarItem onClick={() => scroll(0)}>About</MenuSidebarItem>
+        <MenuSidebarItem onClick={() => scroll(1)}>Experience</MenuSidebarItem>
+        <MenuSidebarItem onClick={() => scroll(2)}>Projects</MenuSidebarItem>
+        <MenuSidebarItem onClick={() => scroll(3)}>Contact</MenuSidebarItem>
       </MenuSidebar>
     </HeaderDiv>
   );

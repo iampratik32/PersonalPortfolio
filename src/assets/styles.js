@@ -53,6 +53,7 @@ exports.HeaderMain = styled.div`
 
 exports.HeaderItem = styled.a`
     padding-left: 1rem;
+    cursor: pointer;
     padding-right: 1rem;
     color: ${colors.white};
     font-size: 16px;
@@ -84,6 +85,7 @@ exports.MenuSidebar = styled.div`
 
 exports.MenuSidebarItem = styled.a`
     padding: 20px;
+    cursor: pointer;
     width: 100%;
     font-family: 'Sedgwick Ave', cursive;
     text-decoration: none;
@@ -129,7 +131,9 @@ exports.VSpacer = styled.div`
 `
 
 exports.ParText = styled.p`
-    letter-spacing: 0.05cm;
+    text-align: justify;
+    text-justify: inter-word;
+    letter-spacing: ${props => props.spacing ? props.spacing : '0.05cm'};
     font-size: ${props => props.size ? props.size : '14px'};
     color: ${props => props.color ? props.color : colors.textColor};
 `
@@ -214,4 +218,61 @@ exports.Button = styled.span`
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     color: ${colors.textColor};
+`
+
+exports.MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+exports.HLine = styled.div`
+    width: ${p => p.width ? p.width : '87px'};
+    align-self: center;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border-top: 0.1px solid ${colors.lineColor};
+`
+
+exports.TitleWrapper = styled.div`
+    display: flex;
+    padding-top: 1rem;
+    flex-direction: row;
+`
+
+exports.ContainerTitle = styled.span`
+    font-size: clamp(20px, 7vw, 35px);
+    font-weight: bolder;
+    text-align: justify;
+    text-justify: inter-word;
+    color: ${colors.white};
+`
+
+exports.ContainerWrapper = styled.div`
+    display: flex;
+    align-self: center;
+    width: ${p => p.width};
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid ${colors.textColor};
+    flex-direction: column;
+    @media(max-width: ${maxWidth}){
+        width: 90%;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+`
+
+exports.RowWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    @media(max-width: ${maxWidth}){
+        flex-direction: ${p=> p.dont ? 'row' : 'column'};
+    }
+`
+exports.ListWrapper = styled.div`
+    width: 50%;
+    margin-top: 1rem;
+    padding-left: 1rem;
 `
