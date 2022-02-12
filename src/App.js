@@ -32,8 +32,8 @@ function App() {
       </BannerContainer>
       <Content>
         <About aRef={aRef} />
-        <Experience eRef={eRef} />
         <Project pRef={pRef} />
+        <Experience eRef={eRef} />
         <Contact cRef={cRef} />
       </Content>
       <Footer />

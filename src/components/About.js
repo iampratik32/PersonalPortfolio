@@ -10,7 +10,7 @@ function About({ aRef }) {
         <MainContainer>
             <ContainerTitle title={'About'} pRef={aRef} />
             <RowWrapper>
-                <ContainerWrapper width={'70%'}>
+                <ContainerWrapper border width={'70%'}>
                     <HeaderText size={'19px'}>
                         <FaCaretRight size={13} />
                         Something About Me
@@ -19,7 +19,7 @@ function About({ aRef }) {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat nulla odio, eget viverra turpis placerat et. Praesent iaculis, justo id cursus luctus, est risus tincidunt mi, pretium finibus sapien velit in magna. Nunc vitae nisi nulla. Donec aliquam euismod laoreet. Curabitur maximus sed nisl vel hendrerit. Aliquam rhoncus tortor eros. Proin accumsan leo semper eros vehicula tempus. Curabitur enim massa, dignissim sit amet vulputate vel, bibendum non nibh. Donec placerat arcu odio, quis consequat nisl ultrices vestibulum. Curabitur quam ante, iaculis vitae metus vel, efficitur egestas ante. Integer tempus, felis eget rhoncus eleifend, sapien quam pharetra purus, rhoncus lacinia dui purus ut ligula. Suspendisse nunc massa, pretium at urna vitae, ornare ornare orci.
                     </ParText>
                 </ContainerWrapper>
-                <ContainerWrapper width={'30%'}>
+                <ContainerWrapper border width={'30%'}>
                     <HeaderText size={'19px'}>
                         <FaCaretRight size={13} />
                         Stuff I'm Familiar With

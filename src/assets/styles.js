@@ -1,6 +1,7 @@
 const { colors } = require('../config/theme')
 const { default: styled } = require("styled-components");
 const maxWidth = '1000px'
+const maxCardWidth = '1175px'
 
 exports.Main = styled.div`
     background-color: ${colors.containerColor};
@@ -141,8 +142,6 @@ exports.ParText = styled.p`
 exports.HeaderText = styled.span`
     font-size: ${props => props.size ? props.size : '36px'};
     font-weight: bolder;
-    text-align: justify;
-    text-justify: inter-word;
     color: ${props => props.color ? props.color : colors.textColor};
     /* @media(max-width: ${maxWidth}){
         font-size: clamp(40px, 7vw, 40px);
@@ -254,10 +253,11 @@ exports.ContainerWrapper = styled.div`
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     padding: 1rem;
-    border-radius: 1rem;
-    border: 1px solid ${colors.textColor};
+    background-color: ${p => p.back ? colors.cardBack : 'none'};
+    border-radius: ${p => p.radius ? p.radius : '1rem'};
+    border: ${p => p.border ? `1px solid ${colors.textColor}` : '0px'};
     flex-direction: column;
-    @media(max-width: ${maxWidth}){
+    @media(max-width: ${p => !p.cards ? maxWidth : maxCardWidth}){
         width: 90%;
         margin-top: 0.5rem;
         margin-bottom: 0.5rem;
@@ -266,13 +266,52 @@ exports.ContainerWrapper = styled.div`
 
 exports.RowWrapper = styled.div`
     display: flex;
+    justify-content: center;
     flex-direction: row;
-    @media(max-width: ${maxWidth}){
-        flex-direction: ${p=> p.dont ? 'row' : 'column'};
+    @media(max-width: ${p => !p.cards ? maxWidth : maxCardWidth}){
+        flex-direction: ${p => p.dont ? 'row' : 'column'};
     }
 `
 exports.ListWrapper = styled.div`
     width: 50%;
     margin-top: 1rem;
     padding-left: 1rem;
+`
+
+exports.CardWrapper = styled(this.ContainerWrapper)`
+    transition: box-shadow 0.2s;
+    cursor: pointer;
+    :hover{
+        animation-name: example;
+        animation-duration: 0.25s;
+        box-shadow: 0 0 20px ${colors.hover}, 0 0 10px ${colors.hover};
+    }
+`
+
+exports.CardTitle = styled(this.HeaderText)`
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+`
+
+exports.CardRowWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: ${p => p.right ? 'flex-end' : 'flex-start'};
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: ${p => p.bottom};
+`
+exports.Label = styled.span`
+    border-radius: 0.7rem;
+    margin-right: 0.5rem;
+    flex-grow: initial;
+    background-color: ${colors.containerColor};
+    color: ${colors.white};
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 13px;
 `
