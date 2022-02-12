@@ -130,6 +130,9 @@ exports.Content = styled.div`
 exports.VSpacer = styled.div`
     height: ${p => p.height ? p.height : '1rem'};
 `
+exports.HSpacer = styled.div`
+    width: ${p => p.width ? p.width : '1rem'};
+`
 
 exports.ParText = styled.p`
     text-align: justify;
@@ -268,7 +271,9 @@ exports.RowWrapper = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: row;
+    margin-bottom: ${p=> p.margin ? '1.5rem' : 0};
     @media(max-width: ${p => !p.cards ? maxWidth : maxCardWidth}){
+        margin-bottom: ${p=> p.margin ? '0.2rem' : 0};
         flex-direction: ${p => p.dont ? 'row' : 'column'};
     }
 `
@@ -302,6 +307,9 @@ exports.CardRowWrapper = styled.div`
     margin-left: 1rem;
     margin-right: 1rem;
     margin-bottom: ${p => p.bottom};
+    @media(max-width: ${maxCardWidth}){
+        margin-top: ${p=> p.more ? '1rem' : 'none'};
+    }
 `
 exports.Label = styled.span`
     border-radius: 0.7rem;
@@ -314,4 +322,102 @@ exports.Label = styled.span`
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     font-size: 13px;
+`
+
+exports.Popup = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    bottom: 0;
+    right: 0;
+    background-color: ${colors.menuColor};
+    z-index: 2;
+    visibility: ${p => p.show ? 'visible' : 'hidden'};
+    opacity: ${p => p.show ? 1 : 0};
+    overflow: hidden;
+    transition: .54s ease-in-out;
+    @media(max-width: ${maxWidth}){
+        transition: .34s ease-in-out;
+    }
+`
+exports.PopupInner = styled.div`
+    position: relative;
+    flex-direction: row;
+    bottom: ${p => p.show ? 0 : '-100vw'};
+    right: ${p => p.show ? 0 : '0vh'};
+    display: flex;
+    align-items: center;
+    max-width: 800px;
+    max-height: 600px;
+    width: 60%;
+    height: 80%;
+    border-radius: 0.8rem;
+    background-color: ${colors.popupBack};
+    transition: .5s ease-in-out;
+    @media(max-width: ${maxCardWidth}){
+        flex-direction: column;
+        width: 90%;
+        padding-top: 2rem;
+        max-height: none;
+        max-height: none;
+    }
+    @media(max-width: ${maxWidth}){
+        transition: .3s ease-in-out;
+    }
+`
+exports.PopupLeft = styled.div`
+    display: flex;
+    width: 60%;
+    height: 100%;
+    overflow: hidden;
+    @media(max-width: ${maxCardWidth}){
+        width: 90%;
+    }
+`
+exports.PopupImage = styled.img`
+    width: auto;
+    object-fit: fill;
+    height: 100%;
+    @media(max-width: ${maxCardWidth}){
+        width: 100%;
+        height: auto;
+    }
+`
+
+exports.PopupRight = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    padding-top: 5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    @media(max-width: ${maxCardWidth}){
+        width: 90%;
+        overflow: auto;
+        padding-top: 1rem;
+    }
+`
+exports.PopupClose = styled.span`
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: -1rem;
+    top: -1rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    border: 1px solid ${colors.textColor};
+    background-color: ${colors.containerColor};
+    z-index: 4;
+    color: #fff;
+    color: ${colors.white};
+    line-height: 3rem;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
 `
