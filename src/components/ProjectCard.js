@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CardTitle, CardWrapper, CardRowWrapper, VSpacer, Label, Popup, PopupInner, PopupLeft, PopupRight, PopupClose, PopupImage, ParText, HeaderText, Button, HSpacer } from '../assets/styles'
+import { CardTitle, CardWrapper, CardRowWrapper, VSpacer,  Popup, PopupInner, PopupLeft, PopupRight, PopupClose, PopupImage, ParText, HeaderText, Button, HSpacer } from '../assets/styles'
 import { IoOpenOutline, IoFolderOpenOutline, IoGitBranch, IoClose } from 'react-icons/io5'
 import { colors } from '../config/theme'
 import LabelWrapper from './LabelWrapper'

@@ -15,9 +15,8 @@ function Header({ menuWidth, setMenuWidth, allRefs }) {
         <HeaderMain>
           <HeaderItem href='/'>Home</HeaderItem>
           <HeaderItem onClick={() => scroll(0)}>About</HeaderItem>
-          <HeaderItem onClick={() => scroll(1)}>Experience</HeaderItem>
-          <HeaderItem onClick={() => scroll(2)}>Projects</HeaderItem>
-          <HeaderItem onClick={() => scroll(3)}>Contact</HeaderItem>
+          <HeaderItem onClick={() => scroll(1)}>Projects</HeaderItem>
+          <HeaderItem onClick={() => scroll(2)}>Contact</HeaderItem>
           <HeaderMenu visible={menuWidth === '0px' ? true : false} onClick={toogleMenu}><FaBars color='#fff' size={22} /></HeaderMenu>
         </HeaderMain>
       </HeaderContent>
@@ -25,9 +24,8 @@ function Header({ menuWidth, setMenuWidth, allRefs }) {
         <MenuSideBarIcon visible={menuWidth !== '0px' ? true : false}><IoMdClose color='#fff' size={40} onClick={toogleMenu} /></MenuSideBarIcon>
         <MenuSidebarItem href='/'>Home</MenuSidebarItem>
         <MenuSidebarItem onClick={() => scroll(0)}>About</MenuSidebarItem>
-        <MenuSidebarItem onClick={() => scroll(1)}>Experience</MenuSidebarItem>
-        <MenuSidebarItem onClick={() => scroll(2)}>Projects</MenuSidebarItem>
-        <MenuSidebarItem onClick={() => scroll(3)}>Contact</MenuSidebarItem>
+        <MenuSidebarItem onClick={() => scroll(1)}>Projects</MenuSidebarItem>
+        <MenuSidebarItem onClick={() => scroll(2)}>Contact</MenuSidebarItem>
       </MenuSidebar>
     </HeaderDiv>
   );

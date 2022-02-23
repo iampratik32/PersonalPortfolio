@@ -271,9 +271,9 @@ exports.RowWrapper = styled.div`
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin-bottom: ${p=> p.margin ? '1.5rem' : 0};
+    margin-bottom: ${p => p.margin ? '1.5rem' : 0};
     @media(max-width: ${p => !p.cards ? maxWidth : maxCardWidth}){
-        margin-bottom: ${p=> p.margin ? '0.2rem' : 0};
+        margin-bottom: ${p => p.margin ? '0.2rem' : 0};
         flex-direction: ${p => p.dont ? 'row' : 'column'};
     }
 `
@@ -298,6 +298,10 @@ exports.CardTitle = styled(this.HeaderText)`
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    ${this.CardWrapper}:hover & {
+        color: ${colors.textColor};
+        transition: color 0.3s;
+    }
 `
 
 exports.CardRowWrapper = styled.div`
@@ -308,7 +312,7 @@ exports.CardRowWrapper = styled.div`
     margin-right: 1rem;
     margin-bottom: ${p => p.bottom};
     @media(max-width: ${maxCardWidth}){
-        margin-top: ${p=> p.more ? '1rem' : 'none'};
+        margin-top: ${p => p.more ? '1rem' : 'none'};
     }
 `
 exports.Label = styled.span`
@@ -420,4 +424,108 @@ exports.PopupClose = styled.span`
     text-align: center;
     cursor: pointer;
     text-decoration: none;
+`
+
+// Contact
+
+exports.RowCol = styled.div`
+    flex: ${p => p.flex};
+    flex-direction: row;
+`
+
+exports.FormContainer = styled.form`
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    @media(max-width: ${maxWidth}){
+        margin-left: 1rem;
+        margin-right: 1rem; 
+    }
+`
+
+exports.Input = styled.input`
+    width: 100%;
+    padding: 1rem;
+    background-color: ${colors.mainColor};
+    border: 0px;
+    color: ${colors.textColor};
+    ::placeholder{
+        color: ${colors.lineColor};
+    }
+    :focus{
+        outline: none !important;
+        border-color: ${colors.hover};
+        box-shadow: 0 0 10px ${colors.hover};
+    }
+    border-radius: 10px;
+    @media(max-width: ${maxWidth}){
+        width: 95%;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+    }
+`
+
+exports.TextArea = styled.textarea`
+    width: 100%;
+    padding: 1rem;
+    resize: none;
+    background-color: ${colors.mainColor};
+    border: 0px;
+    color: ${colors.textColor};
+    ::placeholder{
+        color: ${colors.lineColor};
+    }
+    :focus{
+        outline: none !important;
+        border-color: ${colors.hover};
+        box-shadow: 0 0 10px ${colors.hover};
+    }
+    border-radius: 10px;
+    margin-top: 2rem;
+    @media(max-width: ${maxWidth}){
+        width: 95%;
+        padding: 0.8rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+`
+exports.FormButton = styled.button`
+    margin-top: 2rem;
+    width: auto;
+    text-align: center;
+    align-self: center;
+    border-radius: 0.5rem;
+    border: 1px solid ${colors.mainColor};
+    padding-top: 1rem;
+    background: ${colors.mainColor};
+    user-select: none;
+    padding-bottom: 1rem;
+    cursor: pointer;
+    :hover{
+        outline: none !important;
+        border-color: ${colors.hover};
+        box-shadow: 0 0 10px ${colors.hover};
+    }
+    :focus{
+        outline: none !important;
+        border-color: ${colors.hover};
+        box-shadow: 0 0 10px ${colors.hover};
+    }
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    color: ${colors.lineColor};
+    @media(max-width: ${maxWidth}){
+        margin-top: 1rem;
+    }
+`
+
+exports.FormInfo = styled.div`
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    @media(max-width: ${maxWidth}){
+        margin-bottom: 1.25rem;
+    }
 `
