@@ -1,46 +1,85 @@
-import React from 'react'
-import { MainContainer, RowWrapper, VSpacer } from '../assets/styles'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import { Button, HeaderText, MainContainer, RowWrapper, Spinner, SpinnerContainer, VSpacer } from '../assets/styles'
+import { colors } from '../config/theme'
 import ContainerTitle from './ContainerTitle'
 import ProjectCard from './ProjectCard'
 
 function Project({ pRef }) {
 
-    const i1 = {
-        title: 'Chat With Me',
-        git: 'https://www.google.com',
-        hosted: 'https://www.trakt.tv',
-        app: false,
-        image: 'https://victoria.mediaplanet.com/app/uploads/sites/102/2019/07/mainimage-26.jpg',
-        used: ['NodeJS', 'Socket/IO', 'HTML/CSS'],
-        description: 'Some Description',
-    }
-    const i2 = {
-        title: 'Spoutify Stats',
-        git: 'https://www.google.com',
-        app: true,
-        image: 'https://miro.medium.com/max/1838/0*kBHpKva09AsGj7RQ',
-        used: ['Kotlin', 'Android'],
-        description: 'Some Description'
-    }
-    const i3 = {
-        title: 'Personal Portfolio',
-        git: 'https://www.google.com',
-        app: false,
-        image: 'https://www.preface.ai/blog/wp-content/uploads/2021/05/photo-1610563166150-b34df4f3bcd6-768x575.jpeg',
-        used: ['ReactJS', 'NodeJS'],
-        description: 'Some Description'
+    const [data, setData] = useState([])
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
+    const [datas, setDatas] = useState([])
+
+    useEffect(() => {
+        getData()
+    }, [])
+
+    useEffect(() => {
+        if (data.length > 0) {
+            var per = 3
+            var result = data.reduce((resultArray, item, index) => {
+                const chunkIndex = Math.floor(index / per)
+
+                if (!resultArray[chunkIndex]) {
+                    resultArray[chunkIndex] = [] // start a new chunk
+                }
+
+                resultArray[chunkIndex].push(item)
+
+                return resultArray
+            }, [])
+            setDatas(result)
+            console.log(result);
+        }
+    }, [data])
+
+    useEffect(() => {
+        error || data.length > 0 ? setLoading(false) : setLoading(true)
+    }, [data, error])
+
+    const getData = async () => {
+        setError(null)
+        await axios.get(`http://localhost:6969`)
+            .then((v) => {
+                setData(v.data.data)
+            }).catch((err) => setError(`Something Went Horribly Wrong :(`))
     }
 
     return (
         <MainContainer>
             <ContainerTitle title={'Projects'} pRef={pRef} />
-            <RowWrapper cards margin>
-                <ProjectCard data={i1} />
-                <ProjectCard data={i2} />
-                <ProjectCard data={i3} />
-            </RowWrapper>
-            
-            <VSpacer height={'5.5rem'}/>
+            {datas.length > 0 ?
+                <>
+                    {
+                        datas.map((v, i) =>
+                            <RowWrapper key={i} cards margin>
+                                {v.map((v2) => <ProjectCard data={v2} key={v2.id} />)}
+                            </RowWrapper>)
+                    }
+                    <VSpacer height={'1rem'} />
+                    <Button onClick={() => window.open('https://github.com/iampratik32', '_blank')}>View All My Public Projects</Button>
+                </>
+                : loading ?
+                    <SpinnerContainer>
+                        <Spinner />
+                        <HeaderText color={colors.white} size={'17px'}>
+                            Loading ...
+                        </HeaderText>
+                    </SpinnerContainer>
+                    :
+                    <SpinnerContainer>
+                        <HeaderText color={colors.lineColor} size={'23px'}>
+                            {error}
+                        </HeaderText>
+                        <VSpacer height={'3rem'} />
+                        <Button onClick={() => getData()}>Try Again</Button>
+                    </SpinnerContainer>
+            }
+
+
+            <VSpacer height={'5.5rem'} />
         </MainContainer>
     )
 }

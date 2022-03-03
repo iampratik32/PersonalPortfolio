@@ -1,5 +1,5 @@
 const { colors } = require('../config/theme')
-const { default: styled } = require("styled-components");
+const { default: styled, keyframes } = require("styled-components");
 const maxWidth = '1000px'
 const maxCardWidth = '1175px'
 
@@ -205,7 +205,7 @@ exports.FooterDiv = styled.div`
 `
 exports.Button = styled.span`
     border: 1px solid ${colors.textColor};
-    width: 100px;
+    width: auto;
     text-align: center;
     align-self: center;
     border-radius: 0.5rem;
@@ -244,6 +244,7 @@ exports.TitleWrapper = styled.div`
 exports.ContainerTitle = styled.span`
     font-size: clamp(20px, 7vw, 35px);
     font-weight: bolder;
+    user-select: none;
     text-align: justify;
     text-justify: inter-word;
     color: ${colors.white};
@@ -528,4 +529,28 @@ exports.FormInfo = styled.div`
     @media(max-width: ${maxWidth}){
         margin-bottom: 1.25rem;
     }
+`
+
+const scaleOut = keyframes`
+    0% { transform: scale(0); }
+    100% { transform: scale(1.0); opacity: 0; }
+`
+
+exports.Spinner = styled.div`
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1rem;
+    background-color: none;
+    border: 3px solid ${colors.textColor};
+    border-radius: 100%;
+    transition : all 0.5s;
+    animation: ${scaleOut} 2s infinite ease-in-out;
+    -webkit-animation: ${scaleOut} 2s infinite ease-in-out;
+    
+`
+
+exports.SpinnerContainer = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 `
