@@ -67,6 +67,7 @@ function Project({ pRef }) {
                         <HeaderText color={colors.white} size={'17px'}>
                             Loading ...
                         </HeaderText>
+                        <VSpacer height={'1rem'} />
                     </SpinnerContainer>
                     :
                     <SpinnerContainer>

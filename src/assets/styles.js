@@ -492,7 +492,7 @@ exports.TextArea = styled.textarea`
     }
 `
 exports.FormButton = styled.button`
-    margin-top: 2rem;
+    margin-top: ${p => p.loading ? '0.5rem' : '2rem'};
     width: auto;
     text-align: center;
     align-self: center;
@@ -502,7 +502,7 @@ exports.FormButton = styled.button`
     background: ${colors.mainColor};
     user-select: none;
     padding-bottom: 1rem;
-    cursor: pointer;
+    cursor: ${p => p.disable ? 'not-allowed' : 'pointer'};
     :hover{
         outline: none !important;
         border-color: ${colors.hover};
@@ -537,9 +537,8 @@ const scaleOut = keyframes`
 `
 
 exports.Spinner = styled.div`
-    width: 5rem;
-    height: 5rem;
-    margin-bottom: 1rem;
+    width: ${p => p.width ? p.width : '5rem'};
+    height: ${p => p.height ? p.height : '5rem'};
     background-color: none;
     border: 3px solid ${colors.textColor};
     border-radius: 100%;
@@ -553,4 +552,31 @@ exports.SpinnerContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
+`
+
+exports.MessageContainer = styled.div`
+    display: flex;
+    flex: 10;
+    width: auto;
+    align-self: center;
+    justify-self: center;
+    border: 1px solid ${colors.lineColor};
+    padding-top: 0.5rem;
+    background-color: ${colors.cardBack};
+    padding-bottom: 0.5rem;
+    border-radius: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+`
+
+exports.MessageWrapper = styled.div`
+    flex: ${p => p.flex};
+    display: flex;
+    align-items: center;
+    cursor: ${p => p.close ? 'pointer' : 'auto'};
+    justify-items: flex-end;
+    padding-left: ${p => p.center ? '1rem' : 0};
+    padding-right: ${p => p.center ? '1rem' : 0};
 `

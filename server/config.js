@@ -1,4 +1,13 @@
 const { Pool } = require('pg')
+const nodemailer = require('nodemailer')
+
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASSWORD,
+    }
+})
 
 const config = {
     user: process.env.DB_USER,
@@ -10,4 +19,4 @@ const config = {
 
 const pool = new Pool(config)
 
-module.exports = { pool }
+module.exports = { pool, transporter }
