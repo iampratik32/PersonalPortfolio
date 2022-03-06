@@ -31,7 +31,7 @@ function Project({ pRef }) {
                 return resultArray
             }, [])
             setDatas(result)
-            console.log(result);
+            // console.log(result);
         }
     }, [data])
 

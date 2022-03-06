@@ -2,11 +2,13 @@ const { colors } = require('../config/theme')
 const { default: styled, keyframes } = require("styled-components");
 const maxWidth = '1000px'
 const maxCardWidth = '1175px'
+const mobileM= '375px'
+const mobileL= '425px'
+const tablet = '820px' 
 
 exports.Main = styled.div`
     background-color: ${colors.containerColor};
-    /* background-color: ${props => props.menu ? colors.dimmed : colors.mainColor}; */
-    @import url("https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
 `
 
 exports.HeaderDiv = styled.div`
@@ -32,7 +34,7 @@ exports.HeaderContent = styled.div`
     }
 `
 
-exports.HeaderLogo = styled.div`
+exports.HeaderLogo = styled.a`
     margin-right: auto;
 `
 
@@ -57,8 +59,9 @@ exports.HeaderItem = styled.a`
     cursor: pointer;
     padding-right: 1rem;
     color: ${colors.white};
+    user-select: none;
     font-size: 16px;
-    font-family: 'Sedgwick Ave', cursive;
+    font-family: 'Josefin Sans', cursive;
     text-decoration: none;
     :hover{
         color: ${colors.hover};
@@ -88,7 +91,7 @@ exports.MenuSidebarItem = styled.a`
     padding: 20px;
     cursor: pointer;
     width: 100%;
-    font-family: 'Sedgwick Ave', cursive;
+    font-family: 'Josefin Sans', cursive;
     text-decoration: none;
     font-size: 1.5rem;
     color: #818181;
@@ -114,6 +117,23 @@ exports.BannerContainer = styled.div`
     display: flex;
     background: ${colors.bannerGradient};
     height: calc(100vh - 7rem);
+    min-height: 27rem;
+    @media(max-width: ${mobileL}){
+        min-height: 26rem;
+        height: 26rem;
+    }
+    @media(max-width:${mobileM}){
+        height: 28rem;
+        min-height: 28rem;
+    }
+    @media(max-width:${tablet}){
+        height: 26rem;
+        /* min-height: 27rem; */
+    }
+    @media(max-width:${'1100px'}){
+        max-height: 26rem;
+        /* min-height: 27rem; */
+    }
 `
 
 exports.Content = styled.div`
@@ -183,6 +203,7 @@ exports.SidebarItem = styled.a`
     transition: transform .2s;
     text-shadow: 0px 1px 10px 0px rgb(181, 165, 196);
     margin-bottom: 1em;
+    padding-right: ${p => p.hor ? '1.8rem' : 0};
     :hover{
         transform: scale(1.3);
     }
@@ -199,9 +220,10 @@ exports.VLine = styled.div`
 // `
 
 exports.FooterDiv = styled.div`
-    height: 4rem;
     background-color: ${colors.containerColor};
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `
 exports.Button = styled.span`
     border: 1px solid ${colors.textColor};
@@ -338,7 +360,7 @@ exports.Popup = styled.div`
     height: 100vh;
     bottom: 0;
     right: 0;
-    background-color: ${colors.menuColor};
+    background-color: ${colors.popupDim};
     z-index: 2;
     visibility: ${p => p.show ? 'visible' : 'hidden'};
     opacity: ${p => p.show ? 1 : 0};
@@ -579,4 +601,18 @@ exports.MessageWrapper = styled.div`
     justify-items: flex-end;
     padding-left: ${p => p.center ? '1rem' : 0};
     padding-right: ${p => p.center ? '1rem' : 0};
+`
+
+exports.ScrollButton = styled.button`
+    position: fixed;
+    transition: transform .2s;
+    bottom: 2rem;
+    border: none;
+    background-color: ${colors.transparent};
+    cursor: pointer;
+    right: 2rem;
+    :hover{
+        transform: scale(1.2);
+    }
+    z-index: 1;
 `
